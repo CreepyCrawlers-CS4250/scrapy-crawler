@@ -1,7 +1,7 @@
 # import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from urllib.parse import urljoin
+# from urllib.parse import urljoin
 import re
 
 
@@ -27,11 +27,10 @@ class Cpp(CrawlSpider):
             href = link.attrib["href"]
 
             # Resolve relative links
-            if (not "https://" in href) and (not "http://" in href):
-                url = response.urljoin(href)
+            url = response.urljoin(href)
 
             # ignore the other domains in the links list
             if "cpp.edu" in url and not "mailto:" in url:
                 links.append(url)
 
-        yield {"url": response.url, "links": links}
+        return {"url": response.url, "links": links}
