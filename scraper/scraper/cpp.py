@@ -1,8 +1,5 @@
-# import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-# from urllib.parse import urljoin
-import re
 
 
 class Cpp(CrawlSpider):
@@ -13,7 +10,6 @@ class Cpp(CrawlSpider):
         Rule(
             LinkExtractor(
                 allow=(r".*"),
-                # deny=(r"mailto:(.*)"),
             ),
             callback="parse_items",
             follow=True,
