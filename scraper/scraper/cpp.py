@@ -4,8 +4,8 @@ from scrapy.spiders import CrawlSpider, Rule
 
 class Cpp(CrawlSpider):
     name = "cpp"
-    allowed_domains = ["cpp.edu"]
-    start_urls = ["https://www.cpp.edu/"]
+    allowed_domains = ["asi.cpp.edu"]
+    start_urls = ["https://asi.cpp.edu/"]
     rules = [
         Rule(
             LinkExtractor(
@@ -26,7 +26,7 @@ class Cpp(CrawlSpider):
             url = response.urljoin(href)
 
             # ignore the other domains in the links list
-            if "cpp.edu" in url and not "mailto:" in url:
+            if "asi.cpp.edu" in url:
                 links.append(url)
 
         return {"url": response.url, "links": links}
