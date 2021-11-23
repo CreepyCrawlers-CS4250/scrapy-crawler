@@ -10,6 +10,7 @@ class Centennial(CrawlSpider):
         Rule(
             LinkExtractor(
                 allow=(r".*"),
+                deny=(r"https://centennial.cnusd.k12.ca.us/common/controls/general/email/*")
             ),
             callback="parse_items",
             follow=True,
@@ -26,7 +27,7 @@ class Centennial(CrawlSpider):
             url = response.urljoin(href)
 
             # ignore the other domains in the links list
-            if "centennial.cnusd.k12.ca.us" in url and not "mailto:" in url:
+            if "centennial.cnusd.k12.ca.us" in url and not "sendemail" in url:
                 links.append(url)
 
         return {"url": response.url, "links": links}
